@@ -44,11 +44,19 @@ def light_off:
      pin.value(0)
      body = "You turned a light off!"
      return response_template % body
+
+switch_pin = machine.Pin(10, machine.Pin.IN)
+
+def switch():
+     body = "{state: " . switch_pin.value() . "}"
+     return response_template % body
+
 handlers = {
     'time': time,
     'dummy': dummy,
     'light_on': light_on,
     'light_off': light_off,
+    'switch': switch,
 }
 
 
